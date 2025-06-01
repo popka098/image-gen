@@ -1,0 +1,15 @@
+body {
+    width: 1200px;
+    height: 630px;
+    margin: 0;
+    font-family: sans-serif;
+    position: relative;
+    background: url("assets/background.jpg") center/cover;
+}
+.content {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    color: white;
+    font-size: 48px;
+}
