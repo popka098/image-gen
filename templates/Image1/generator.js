@@ -1,9 +1,17 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
+const path = require("path");
 
-const base_path = "templates/Image1/"
+const dir_name = "Image1";
+
+const base_path = `templates/${dir_name}/`;
 const data = JSON.parse(fs.readFileSync(`${base_path}data.json`, "utf8"));
 const template = fs.readFileSync(`${base_path}template.html`, "utf8");
+
+if (!fs.existsSync(`output/${dir_name}`)) {
+    fs.mkdirSync(`output/${dir_name}`)
+    console.log(`Создана папка output/${dir_name}/`)
+}
 
 (async () => {
     const browser = await puppeteer.launch();
@@ -14,7 +22,7 @@ const template = fs.readFileSync(`${base_path}template.html`, "utf8");
         await page.setContent(html, { waitUntil: "networkidle0" });
         await page.setViewport({ width: 1200, height: 630 });
         await page.screenshot({
-            path: `output/banner-${i + 1}.jpeg`,
+            path: `output/${dir_name}/banner-${i + 1}.jpeg`,
             type: "jpeg",
             quality: 90,
         });
