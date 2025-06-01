@@ -19,7 +19,9 @@ if (!fs.existsSync(`output/${dir_name}`)) {
 function replacer(index) {
     let res = template;
 
-    res = res.replace("{{title}}", data[index].title);
+    for (const [key, value] of Object.entries(data[index])) {
+        res = res.replace(`{{${key}}}`, value);
+    }
 
     return res;
 }
