@@ -16,12 +16,20 @@ if (!fs.existsSync(`output/${dir_name}`)) {
     console.log(`Создана папка output/${dir_name}/`);
 }
 
+function replacer(index) {
+    let res = template;
+
+    res = res.replace("{{title}}", data[index].title);
+
+    return res;
+}
+
 (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     for (let i = 0; i < data.length; i++) {
-        const html = template.replace("{{title}}", data[i].title);
+        const html = replacer(i);
         await page.setContent(html, { waitUntil: "networkidle0" });
         await page.setViewport({
             width: settings["width"],
