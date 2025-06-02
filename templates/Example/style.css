@@ -1,15 +1,37 @@
 body {
-    width: 1200px;
-    height: 630px;
     margin: 0;
-    font-family: sans-serif;
-    position: relative;
-    background: url("assets/background.jpg") center/cover;
+    padding: 0;
+    font-family: "Georgia", serif;
 }
-.content {
-    position: absolute;
-    bottom: 50px;
-    left: 50px;
-    color: white;
+.banner {
+    width: 1000px;
+    height: 400px;
+    background-image: url("assets/summer.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.text-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    margin-left: 50px;
+    max-width: 450px;
+}
+.text-box h1 {
+    margin-top: 0;
     font-size: 48px;
+    font-weight: normal;
+}
+.text-box p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 10px 0 0;
+}
+.text-box hr {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 10px 0 20px;
 }
