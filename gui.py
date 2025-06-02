@@ -6,18 +6,7 @@ import tkinter as tk
 from tkinter import simpledialog, messagebox, filedialog
 
 TEMPLATES_DIR = "templates"
-SETTINGS_FILE = "settings.json"
 RUN_SCRIPT = "run.sh"
-
-def load_settings():
-    if not os.path.exists(SETTINGS_FILE):
-        return {"templates": []}
-    with open(SETTINGS_FILE, 'r') as f:
-        return json.load(f)
-
-def save_settings(settings):
-    with open(SETTINGS_FILE, 'w') as f:
-        json.dump(settings, f, indent=4)
 
 def create_template():
     dirname = simpledialog.askstring("Folder Name", "Enter folder name:")
@@ -50,13 +39,12 @@ def create_template():
     messagebox.showinfo("Success", f"Template '{name}' created.")
 
 def delete_template():
-    settings = load_settings()
-    folders = [t["folder"] for t in settings["templates"]]
+    folders = folders = [name for name in os.listdir(TEMPLATES_DIR) if os.path.isdir(os.path.join(TEMPLATES_DIR, name))]
     if not folders:
         messagebox.showinfo("No Templates", "No templates to delete.")
         return
 
-    folder = simpledialog.askstring("Delete Template", f"Enter folder to delete:\n{folders}")
+    folder = simpledialog.askstring("Delete Template", f"Enter template to delete (without quotes and brackets):\n{folders}")
     if folder not in folders:
         messagebox.showerror("Error", "Invalid folder name!")
         return
@@ -65,8 +53,6 @@ def delete_template():
     if os.path.exists(path):
         shutil.rmtree(path)
 
-    settings["templates"] = [t for t in settings["templates"] if t["folder"] != folder]
-    save_settings(settings)
     messagebox.showinfo("Success", f"Template '{folder}' deleted.")
 
 def run_script():
