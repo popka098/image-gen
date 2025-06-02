@@ -32,6 +32,7 @@ function replacer(index) {
 
     return res;
 }
+
 function imageToBase64(imagePath) {
     const fullPath = path.join(base_path, imagePath);
     if (!fs.existsSync(fullPath)) {
@@ -40,10 +41,13 @@ function imageToBase64(imagePath) {
     }
     return fs.readFileSync(fullPath, { encoding: "base64" });
 }
+
 function replaceImagesWithBase64(html, data) {
     let result = html;
+
+    // Улучшенные регулярные выражения
     const imageRegex = /src=['"]([^'"]+)['"]/g;
-    const backgroundRegex = /background-image:\s*url\(['"]([^'"]+)['"]\)/g;
+    const backgroundRegex = /background-image:\s*url\(['"]?([^'"()]+)['"]?\)/g;
 
     // Заменяем все src атрибуты
     result = result.replace(imageRegex, (match, imagePath) => {

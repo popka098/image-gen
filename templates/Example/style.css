@@ -6,7 +6,6 @@ body {
 .banner {
     width: 1000px;
     height: 400px;
-    background-image: url("assets/summer.jpg");
     background-size: cover;
     background-position: center;
     position: relative;
