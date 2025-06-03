@@ -3,7 +3,7 @@ import json
 import shutil
 import subprocess
 import tkinter as tk
-from tkinter import simpledialog, messagebox, filedialog
+from tkinter import simpledialog, messagebox
 
 TEMPLATES_DIR = "templates"
 RUN_SCRIPT = "run.sh"
