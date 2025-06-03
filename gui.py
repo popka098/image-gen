@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import simpledialog, messagebox
 
 TEMPLATES_DIR = "templates"
-RUN_SCRIPT = "run.sh"
+RUN_SCRIPT = "run.py"
 
 def create_template():
     dirname = simpledialog.askstring("Folder Name", "Enter folder name:")
@@ -57,8 +57,8 @@ def delete_template():
 
 def run_script():
     try:
-        subprocess.run(["bash", RUN_SCRIPT], check=True)
-        messagebox.showinfo("Script", "run.sh executed successfully.")
+        subprocess.run(["python", RUN_SCRIPT], check=True)
+        messagebox.showinfo("Script", "run.py executed successfully.")
     except Exception as e:
         messagebox.showerror("Error", f"Failed to run script:\n{e}")
 
